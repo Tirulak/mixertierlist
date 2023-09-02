@@ -147,3 +147,8 @@ try:
     a_tier_covers = [get_album_cover(artist, album) for album in a_tier_picks]
     a_tier = [{'album':album,'cover_art': cover} for album, cover in zip(a_tier_picks, a_tier_covers)]
 
+    # B TIER
+    question = 'Select the albums you want to rank in B Tier:'
+    b_tier_picks = create_tier_list_helper(albums_to_rank, 'B Tier')
+    b_tier_covers = [get_album_cover(artist, album) for album in b_tier_picks]
+
