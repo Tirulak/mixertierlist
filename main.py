@@ -30,7 +30,7 @@ def start():
     elif index == 2:
         see_albums_rated()
     elif index == 3:
-        see_ songs_rated()
+        see_songs_rated()
     elif index == 4:
         create_tier_list()
     elif index == 5:
@@ -151,4 +151,52 @@ try:
     question = 'Select the albums you want to rank in B Tier:'
     b_tier_picks = create_tier_list_helper(albums_to_rank, 'B Tier')
     b_tier_covers = [get_album_cover(artist, album) for album in b_tier_picks]
+    b_tier = [{'album':album,'cover_art': cover } for album, cover in zip(b_tier_picks, b_tier_covers)]
 
+    # C TIER
+    question = 'Select the albums you want to rank in C Tier:'
+    c_tier_picks = create_tier_list_helper(albums_to_rank, 'C Tier')
+    c_tier_covers = [get_album_cover(artist, album) for album in c_tier_picks]
+    c_tier = [{'album':album, 'cover_art': cover } for album, cover in zip(c_tier_picks, c_tier_covers)]
+
+    # D TIER
+    question = 'Select the albums you want to rank in D Tier:'
+    d_tier_picks = create_tier_list_helper(albums_to_rank, 'D Tier')
+    d_tier_covers = [get_album_cover(artist, album) for album in d_tier_picks]
+    d_tier = [{'album':album, 'cover_art':cover} for album, cover in zip(c_tier_picks, c_tier_covers)]
+
+    # E TIER
+    question = 'select the albums you want to rank in E Tier:'
+    e_tier_picks = create_tier_list_helper(albums_to_rank, 'E Tier')
+    e_tier_covers = [get_album_cover(artist, album) for album in e_tier_picks]
+    e_tier = [{'album':album, 'cover_art':cover} for album, cover in zip(e_tier_picks, e_tier_covers)]
+
+    # check if all tiers are empty and if so, exit
+    if not any([s_tier_picks, a_tier_picks, b_tier_picks, c_tier_picks, d_tier_picks, e_tier_picks]):
+        print('All tiers are empty. Exciting...')
+        return
+    # # add the albums that were picked to the tier list
+    tier_list = {
+        'Tier_list_name': tier_list_name,
+        'artist': artist,
+        's_tier': s_tier,
+        'a_tier': a_tier,
+        'b_tier': b_tier,
+        'c_tier': c_tier,
+        'd_tier': d_tier,
+        'e_tier': e_tier,
+        'time': str(datetime.now())
+    }
+
+    # add the tier list to the json file
+    album_file['tier_lists'].append(tier_list)
+
+    # save the json file
+    with open('albums.json', 'w') as f:
+        json.dump(album_file, f, indent=4)
+
+    return
+
+
+except pylast.PyLastError:
+    print('❌[b red] Artist not found [/b red]')
