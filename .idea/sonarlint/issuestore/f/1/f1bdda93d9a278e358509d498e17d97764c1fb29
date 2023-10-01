@@ -1,10 +1,10 @@
 
-kpython:S1192+"LDefine a constant instead of duplicating this literal 'albums.json' 5 times.(Å‹³Ý8‰ Ðò«1
-]python:S1481"9Replace unused local variable "selected_option" with "_".(àÅ²ƒýÿÿÿÿ8‹ Ðò«1
-]python:S905%":Remove or refactor this statement; it has no side effects.(ôõþ­úÿÿÿÿ8‹ Ðò«1
-ppython:S1854-"LRemove this assignment to local variable 'ratings'; the value is never used.(¬’ë±ÿÿÿÿÿ8Œ Ðò«1
-[python:S5754I"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8Œ Ðò«1
-]python:S905M":Remove or refactor this statement; it has no side effects.(ÒÌâ–øÿÿÿÿ8Œ Ðò«1
-Rpython:S1481s".Remove the unused local variable "album_file".(éùä½ýÿÿÿÿ8Œ Ðò«1
-<python:S2711±"Remove this use of "return".(ÙãÞŸ8Œ Ðò«1
-<python:S2711Æ"Remove this use of "return".(ÙãÞŸ8Œ Ðò«1
+kpython:S1192+"LDefine a constant instead of duplicating this literal 'albums.json' 5 times.(Å‹³Ý8Ù¶¯–¬1
+]python:S1481"9Replace unused local variable "selected_option" with "_".(àÅ²ƒýÿÿÿÿ8Ù¶¯–¬1
+]python:S905%":Remove or refactor this statement; it has no side effects.(ôõþ­úÿÿÿÿ8Ù¶¯–¬1
+ppython:S1854-"LRemove this assignment to local variable 'ratings'; the value is never used.(¬’ë±ÿÿÿÿÿ8Ù¶¯–¬1
+[python:S5754I"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8Ù¶¯–¬1
+]python:S905M":Remove or refactor this statement; it has no side effects.(ÒÌâ–øÿÿÿÿ8Ù¶¯–¬1
+Rpython:S1481s".Remove the unused local variable "album_file".(éùä½ýÿÿÿÿ8Ù¶¯–¬1
+<python:S2711±"Remove this use of "return".(ÙãÞŸ8Ù¶¯–¬1
+<python:S2711Ç"Remove this use of "return".(ÙãÞŸ8Ù¶¯–¬1
