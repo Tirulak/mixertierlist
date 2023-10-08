@@ -1,0 +1,8 @@
+
+kpython:S1192+"LDefine a constant instead of duplicating this literal 'albums.json' 5 times.(Å‹³İ8àõõá®1
+]python:S1481"9Replace unused local variable "selected_option" with "_".(àÅ²ƒıÿÿÿÿ8àõõá®1
+]python:S905%":Remove or refactor this statement; it has no side effects.(ôõş­úÿÿÿÿ8àõõá®1
+ppython:S1854-"LRemove this assignment to local variable 'ratings'; the value is never used.(¬’ë±ÿÿÿÿÿ8àõõá®1
+[python:S5754I"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8àõõá®1
+]python:S905M":Remove or refactor this statement; it has no side effects.(ÒÌâ–øÿÿÿÿ8àõõá®1
+tpython:S3776Í"TRefactor this function to reduce its Cognitive Complexity from 31 to the 15 allowed.(Š·†Ó8áõõá®1

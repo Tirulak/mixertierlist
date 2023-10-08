@@ -4,7 +4,6 @@ from datetime import datetime
 from io import BytesIO
 from typing import List
 
-
 import pylast
 import requests
 from pick import pick
@@ -12,32 +11,6 @@ from PIL import Image, ImageDraw, ImageFont
 from rich import print
 from rich.panel import Panel
 from rich.table import Table
-
-LAST_API_KEY = os.environ.get('LASTFM_API_KEY')
-LAST_API_SECRET = os.environ.get('LASTFM_API_SECRET')
-
-
-def start():
-    global network
-    startup_question ='What Do You Want To Do?'
-    options = ['Rate by Album', 'Rate Songs', 'See Albums Rated', 'See Songs Rated', 'Make a Tier List', 'EXIT']
-    selected_option, index = pick(options, startup_question, indicator='->')
-
-    if index == 0:
-        rate_by_album()
-    elif index == 1:
-        rate_by_song()
-    elif index == 2:
-        see_albums_rated()
-    elif index == 3:
-        see_songs_rated()
-    elif index == 4:
-        create_tier_list()
-    elif index == 5:
-        see_tier_lists
-    elif index == 6:
-        exit()
-start()
 
 def load_or_create_json() -> None:
     if os.path.exists('albums.json'):
@@ -375,4 +348,76 @@ def image_generator(file_name, data):
     col_pos = 0
 
     '''E TIER'''
+    if col_pos == 0:
+        draw = ImageDraw.Draw(image)
+        draw.rectangle((col_pos, row_pos, col_pos + increment_size, row_pos + increment_size), fill='pink')
+        draw.text((col_pos + (increment_size//3), row_pos + (increment_size//3)), 'E Tier', font=tier_font, fill='black')
+        col_pos += increment_size
+
+    for album in data['e_tier']:
+
+        response = requests.get(album['cover_art'])
+        cover_art = Image.open(BytesIO(response.content))
+        cover_art = cover_art.resize((increment_size, increment_size))
+        image.paste(cover_art, (col_pos, row_pos))
+        draw = ImageDraw.Draw(image)
+        name = album['album']
+        if len(name) > text_cutoff_value:
+            name = f'{name[:text_cutoff_value]}...'
+
+        draw.text((col_pos, row_pos + increment_size), name, font=font, fill='white')
+        col_pos += 200
+        if col_pos > image_width - increment_size:
+            row_pos += increment_size + 50
+            col_pos = 0
+
+    row_pos += increment_size + 50
+    col_pos = 0
+
+    image = image.crop((0, 0, image_width, row_pos))
+
+    image.save(f'{file_name}')
+
+def see_tier_lists():
+    load_or_create_json()
+    with open('albums.json', 'r') as f:
+        data = json.load(f)
+
+    if not data['tier_lists']:
+        print('❌ [b red]No tier lists have been created yet![/b red]')
+        return
+
+    for key in data['tier_lists']:
+        image_generator(f"{key['tier_list_name']}.png", key)
+        print(f"✅ [b green]CREATED[/b green] {key['tier_list_name']} tier list.")
+
+    print('✅ [b green]DONE[/b green]. Check the directory for the tier lists.')
+    return
+
+LASTFM_API_KEY = os.environ.get('LASTFM_API_KEY')
+LASTFM_API_SECRET = os.environ.get('LASTFM_API_SECRET')
+network = pylast.LastFMNetwork(api_key=LASTFM_API_KEY, api_secret=LASTFM_API_SECRET)
+
+def start():
+    global network
+    startup_question ='What Do You Want To Do?'
+    options = ['Rate by Album', 'Rate Songs', 'See Albums Rated', 'See Songs Rated', 'Make a Tier List', 'EXIT']
+    selected_option, index = pick(options, startup_question, indicator='→')
+
+    if index == 0:
+        rate_by_album()
+    elif index == 1:
+        rate_by_song()
+    elif index == 2:
+        see_albums_rated()
+    elif index == 3:
+        see_songs_rated()
+    elif index == 4:
+        create_tier_list()
+    elif index == 5:
+        see_tier_lists
+    elif index == 6:
+        exit()
+start()git
+
 
